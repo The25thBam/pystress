@@ -39,28 +39,7 @@ def sigint_handler(signum, frame):
 
 signal.signal(signal.SIGINT, sigint_handler)
 
-
-def get_args():
-    exec_time = DEFAULT_TIME
-    proc_num = DEFAULT_CPU
-    if len(sys.argv) > 3:
-        raise
-    if len(sys.argv) == 2:
-        exec_time = int(sys.argv[1])
-    if len(sys.argv) == 3:
-        exec_time = int(sys.argv[1])
-        proc_num = int(sys.argv[2])
-
-    return exec_time, proc_num
-
-
-def _main():
-    try:
-        exec_time, proc_num = get_args()
-    except:
-        msg = "Usage: pystress [exec_time] [proc_num]\n"
-        sys.stderr.write(msg)
-        sys.exit(1)
+def stress(proc_num = DEFAULT_CPU, exec_time = DEFAULT_TIME):
     procs = []
     conns = []
     for i in range(proc_num):
@@ -72,7 +51,7 @@ def _main():
 
     for conn in conns:
         try:
-            print conn.recv()
+            print(conn.recv())
         except EOFError:
             continue
 
@@ -83,4 +62,4 @@ def _main():
 
 
 if __name__ == "__main__":
-    _main()
+    stress()
