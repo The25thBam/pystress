@@ -8,7 +8,6 @@ import time
 
 
 FIB_N = 100
-DEFAULT_TIME = 60
 try:
     DEFAULT_CPU = cpu_count()
 except NotImplementedError:
@@ -20,7 +19,7 @@ def loop(conn):
     conn.send(proc_info)
     conn.close()
     while True:
-        fib(FIB_N)
+        fib(100)
 
 
 def fib(n):
@@ -39,7 +38,7 @@ def sigint_handler(signum, frame):
 
 signal.signal(signal.SIGINT, sigint_handler)
 
-def stress(proc_num = DEFAULT_CPU, exec_time = DEFAULT_TIME):
+def stress(proc_num = cpu_count(), exec_time = 60):
     procs = []
     conns = []
     for i in range(proc_num):
@@ -59,7 +58,3 @@ def stress(proc_num = DEFAULT_CPU, exec_time = DEFAULT_TIME):
 
     for p in procs:
         p.terminate()
-
-
-if __name__ == "__main__":
-    stress()
