@@ -1,0 +1,25 @@
+==========
+Change Log
+==========
+
+v0.5.0
+======
+
+- Updated to Python 3 and made "stress" a function instead of a system parameter
+
+v0.2.1
+======
+
+- Change output to pid only.
+
+
+v0.2.0
+======
+
+- Use pipe to redirect output from child processes.
+
+
+v0.1 & v0.1.1
+=============
+
+- Initial release.
